@@ -5,18 +5,17 @@
         <TargetFramework>net5.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
         <Nullable>enable</Nullable>
+        <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="MaxMind.GeoIP2" Version="4.0.1" />
-      <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
-      <PackageReference Include="XAML.MapControl" Version="5.6.0" />
-    </ItemGroup>
+        <PackageReference Include="MaxMind.GeoIP2" Version="4.0.1" />
+        <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+        <PackageReference Include="XAML.MapControl" Version="5.6.0" />
 
-    <ItemGroup>
-      <None Update="dbip-city-lite-2021-06.mmdb">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <Content Update="dbip-city-lite-2021-06.mmdb">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        </Content>
     </ItemGroup>
-
 </Project>

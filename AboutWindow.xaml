@@ -6,11 +6,42 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:TracertMap"
     mc:Ignorable="d"
-    Title="AboutWindow"
-    Height="450"
-    Width="800">
-    <Grid>
-        
-    </Grid>
+    Title="About"
+    ResizeMode="NoResize"
+    SizeToContent="Height"
+    Width="400"
+    WindowStartupLocation="CenterOwner"
+    >
+    <StackPanel>
+        <TextBlock
+            FontSize="20"
+            Margin="5">
+            About TracertMap
+        </TextBlock>
+        <TextBlock
+            Margin="5">
+            (c) 2021 Kacper Palka
+        </TextBlock>
+        <TextBlock
+            TextWrapping="Wrap"
+            Margin="5">
+            3RD PARTY LIBS USED IN PROJECT
+            <LineBreak/>
+            <LineBreak/>
+            IP Geolocation by DB-IP
+            <LineBreak/>
+            [https://db-ip.com] licensed under https://creativecommons.org/licenses/by/4.0/
+            <LineBreak/>
+            <LineBreak/>
+            XAML-Map-Control by ClemensFischer
+            <LineBreak/>
+            [https://github.com/ClemensFischer/XAML-Map-Control] licensed under Microsoft Public License
+            <LineBreak/>
+            <LineBreak/>
+            Fody.PropertyChanged by Simon Cropp
+            <LineBreak/>
+            [https://github.com/Fody/PropertyChanged] licensed under MIT license
+        </TextBlock>
+        <Button Margin="5" IsCancel="True">Got it!</Button>
+    </StackPanel>
 </Window>
-

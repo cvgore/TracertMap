@@ -1,49 +1,50 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace TracertMap
 {
-    public class Tracing
+    public class TracingExternalCommand
     {
-        private string _command;
-        private 
-        
-        public Tracing()
-        {
-            _command = "tracert";
-        }
+        private string _command = "tracert.exe";
 
-        public string MakeParams(string host)
+        public event EventHandler<string>? OutputReceived;
+
+        private string MakeParams(string host)
         {
             return $"-d {host}";
         }
 
-        public TraceRoute QueryRoute(string host)
+        public async Task<bool> Execute(string host)
         {
             var p = new Process
             {
-                EnableRaisingEvents = true
+                StartInfo = new ProcessStartInfo
+                {
+                    Arguments = MakeParams(host),
+                    CreateNoWindow = true,
+                    FileName = _command,
+                    WorkingDirectory = Environment.CurrentDirectory,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                }
             };
-
-            p.StartInfo = new ProcessStartInfo
-            {
-                Arguments = MakeParams(host),
-                CreateNoWindow = true,
-                FileName = _command,
-                WorkingDirectory = Environment.CurrentDirectory,
-                UseShellExecute = true,
-                RedirectStandardOutput = true,
-                WindowStyle = ProcessWindowStyle.Hidden
-            };
-
+            
             p.OutputDataReceived += TracertCmd_OutputReceived;
+            p.Start();
+            p.BeginOutputReadLine();
+
+            await p.WaitForExitAsync();
+
+            return p.ExitCode == 0;
         }
 
         private void TracertCmd_OutputReceived(object sender, DataReceivedEventArgs e)
         {
             if (e.Data != null)
             {
-                
+                OutputReceived?.Invoke(null, e.Data);
             }
         }
     }

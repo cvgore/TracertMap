@@ -2,7 +2,7 @@
 
 namespace TracertMap
 {
-    public abstract class Polyline
+    public class Polyline
     {
         public LocationCollection? Locations { get; set; }
     }
