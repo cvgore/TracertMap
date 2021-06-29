@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MaxMind.GeoIP2" Version="4.0.1" />
+      <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+      <PackageReference Include="XAML.MapControl" Version="5.6.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="dbip-city-lite-2021-06.mmdb">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+</Project>
